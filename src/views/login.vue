@@ -61,9 +61,11 @@ const rules = reactive<FormRules>({
     { min: 3, max: 5, message: "Length should be 3 to 5", trigger: "blur" },
   ],
 });
+
+// 登录条件函数
 const submitForm = async (formEl: FormInstance | undefined) => {
   if (!formEl) return;
-  await formEl.validate((valid, fields) => {
+  await formEl.validate((valid: any, fields: any) => {
     if (valid) {
       console.log("submit!");
     } else {
