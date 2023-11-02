@@ -46,12 +46,11 @@ const rules = reactive<FormRules>({
     { min: 3, max: 10, message: "Length should be 3 to 5", trigger: "blur" },
   ],
 });
+
+// 登录条件函数
 const submitForm = async (formEl: FormInstance | undefined) => {
   if (!formEl) return;
-  // fileds 报错信息
-  await formEl.validate(async (valid, fields) => {
-    console.log(valid, fields);
-
+  await formEl.validate(async(valid: any, fields: any) => {
     if (valid) {
       const { data } = await login(form);
       localStorage.setItem('token', data.token);
