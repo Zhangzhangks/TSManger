@@ -4,7 +4,7 @@ import { log } from "console";
 
 
 const instace = axios.create({
-    baseURL: 'https://www.fastmock.site/mock/bf1fcb3c2e2945669c2c8d0ecb8009b8/api',
+    baseURL: 'https://www.fastmock.site/mock/b77548bdda96893b23d759d9655d05c4/lgoin',
     timeout: 5000,
     headers: {
         'Content-Type': 'application/json;charest=utf-8'
@@ -27,14 +27,20 @@ instace.interceptors.response.use(res => {
         return Promise.reject(res.data)
     }
 
+
+
 }, (err) => {
     console.log(err);
 
     return Promise.reject(err);
 })
 
+export interface loginData {
+    name: string
+    password: string | number
+}
 type method = "get" | "post"
-export default function request(url: string, method: method, submit: object) {
+export default function request(url: string, method: method, submit: loginData) {
     return instace({
         url,
         method,
