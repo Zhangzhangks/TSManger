@@ -1,7 +1,7 @@
 <template>
-  <div class="common-layout">
+  <div class="common-layout" v-if="list">
     <el-container>
-      <el-header>
+      <el-header class="top">
         <el-row :gutter="20">
           <el-col :span="4">
             <img src="../assets/vue.svg" alt="" />
@@ -14,35 +14,44 @@
           </el-col>
         </el-row></el-header
       >
+
       <el-container>
         <el-aside width="200px">
           <el-col :span="12">
-            <h5 class="mb-2">Custom colors</h5>
+           
             <el-menu
               active-text-color="#ffd04b"
               background-color="#545c64"
               class="el-menu-vertical-demo"
-              default-active="2"
+              default-active="/home/homePage"
               text-color="#fff"
+              :router="true"
             >
-              <el-menu-item index="2">
-                <el-icon><icon-menu /></el-icon>
-                <span>Navigator Two</span>
-              </el-menu-item>
+              <el-menu-item :index="item.path" v-for="(item,i) in list  " :key="item.path">
+              
+                <span>
+                  {{ item.meta.title }}
+                </span>
+              </el-menu-item>      
+            
+
             </el-menu>
           </el-col>
         </el-aside>
-        <el-main>Main</el-main>
+        <el-main><router-view></router-view></el-main>
       </el-container>
     </el-container>
   </div>
 </template>
 <script setup>
-import { ref, reactive } from "vue";
+import { ref, reactive } from "vue";import {useRouter}from 'vue-router'
+const router=useRouter()
+const list=router.getRoutes().filter(v=>v.meta.isShow)
+console.log(list);
 </script>
 
 <style lang="less" scoped>
-.common-layout {
+.top {
   height: 80px;
   background-color: #666;
 
@@ -59,4 +68,21 @@ import { ref, reactive } from "vue";
     color: #fff;
   }
 }
+.el-container{
+  height:calc(100vh - 80px);
+  margin-top: 10px;
+  .el-aside{
+  height: 100%;
+  background-color: red;
+ 
+  .el-col-12{
+    width: 100%;
+    max-width: 100%;
+    height: 100%;
+
+
+  }
+}
+}
+
 </style>
