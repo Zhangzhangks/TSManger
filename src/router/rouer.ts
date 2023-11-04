@@ -15,15 +15,15 @@ const routes: Array<RouteRecordRaw> = [
         path: "homePage",
         component: () => import("@/views/Compoennt/homePage.vue"),
         meta: {
-          title: "人员列表",
+          title: "商品列表",
           isShow: true,
         },
       },
       {
-        path: "about",
-        component: () => import("@/views/about.vue"),
+        path: "user",
+        component: () => import("@/views/user.vue"),
         meta: {
-          title: "商品列表",
+          title: "人员列表",
           isShow: true,
         },
       },

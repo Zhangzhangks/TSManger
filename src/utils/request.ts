@@ -1,8 +1,4 @@
 import axios from "axios";
-import { log } from "console";
-
-
-
 const instace = axios.create({
     baseURL: 'https://www.fastmock.site/mock/b77548bdda96893b23d759d9655d05c4/lgoin',
     timeout: 5000,
@@ -40,7 +36,9 @@ export interface loginData {
     password: string | number
 }
 type method = "get" | "post"
-export default function request(url: string, method: method, submit: loginData) {
+
+
+export default function request(url: string, method: method, submit?: loginData) {
     return instace({
         url,
         method,
